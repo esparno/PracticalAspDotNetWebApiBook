@@ -5,6 +5,7 @@ using System.Web.Http;
 using HelloWebApi.Models;
 using System.Net;
 using System.Net.Http;
+using System.Web.Http.OData;
 
 
 namespace HelloWebApi.Controllers.Api
@@ -93,6 +94,16 @@ namespace HelloWebApi.Controllers.Api
                 return response;
             }
 
+        }
+        public HttpResponseMessage Patch(int id, Delta<Employee> deltaEmployee)
+        {
+            var employee = list.FirstOrDefault(e => e.Id == id);
+            if (employee == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            deltaEmployee.Patch(employee);
+            return Request.CreateResponse(HttpStatusCode.NoContent);
         }
         public void Delete (int id)
         {
