@@ -25,14 +25,14 @@ namespace HelloWebApi.Controllers.Api
                 Id = 12347, FirstName = "Joseph", LastName = "Law", Department = 2
             }
         };
-        public IEnumerable<Employee> Get([FromUri]Filter filter) 
-        {
-            return list.Where(e => e.Department == filter.Department && e.LastName.ToUpper() == filter.LastName.ToUpper()); 
-        }
-        //public IEnumerable<Employee> Get()
+        //public IEnumerable<Employee> Get([FromUri]Filter filter) 
         //{
-        //    return list;
+        //    return list.Where(e => e.Department == filter.Department && e.LastName.ToUpper() == filter.LastName.ToUpper()); 
         //}
+        public IEnumerable<Employee> Get()
+        {
+            return list;
+        }
 
         public Employee GetEmployee(int id)
         {
@@ -54,10 +54,25 @@ namespace HelloWebApi.Controllers.Api
             response.Headers.Location = new Uri(uri);
             return response;
         }
-        public void Put (int id, Employee employee)
+        public HttpResponseMessage Put (int id, Employee employee)
         {
             int index = list.ToList().FindIndex(e => e.Id == id);
-            list[index] = employee;
+            if (index >= 0)
+            {
+                list[index] = employee;
+                return Request.CreateResponse(HttpStatusCode.NoContent);
+            }
+            else
+            {
+                var maxId = list.Max(e => e.Id);
+                employee.Id = maxId + 1;
+                list.Add(employee);
+                var response = Request.CreateResponse<Employee>(HttpStatusCode.Created, employee);
+                string uri = Url.Link("DefaultApi", new { id = employee.Id });
+                response.Headers.Location = new Uri(uri);
+                return response;
+            }
+            
         }
         public void Delete (int id)
         {
