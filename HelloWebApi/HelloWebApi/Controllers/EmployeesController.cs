@@ -74,6 +74,26 @@ namespace HelloWebApi.Controllers.Api
             }
             
         }
+        public HttpResponseMessage Post(int id, Employee employee)
+        {
+            int index = list.ToList().FindIndex(e => e.Id == id);
+            if (index >= 0)
+            {
+                list[index] = employee;
+                return Request.CreateResponse(HttpStatusCode.NoContent);
+            }
+            else
+            {
+                var maxId = list.Max(e => e.Id);
+                employee.Id = maxId + 1;
+                list.Add(employee);
+                var response = Request.CreateResponse<Employee>(HttpStatusCode.Created, employee);
+                string uri = Url.Link("DefaultApi", new { id = employee.Id });
+                response.Headers.Location = new Uri(uri);
+                return response;
+            }
+
+        }
         public void Delete (int id)
         {
             Employee employee = GetEmployee(id);
