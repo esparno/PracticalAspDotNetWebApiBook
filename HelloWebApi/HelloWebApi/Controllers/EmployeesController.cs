@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
+using HelloWebApi.Models;
+using System.Net;
+using System.Net.Http;
+
+
+namespace HelloWebApi.Controllers.Api
+{
+    public class EmployeesController : ApiController
+    {
+        private IList<Employee> list = new List<Employee>() {
+            new Employee()
+            {
+                Id = 12345, FirstName = "John", LastName = "Smith", Department=2
+            },
+            new Employee()
+            {
+                Id = 12346, FirstName = "Jane", LastName = "Doe", Department = 3
+            },
+            new Employee()
+            {
+                Id = 12347, FirstName = "Joseph", LastName = "Law", Department = 2
+            }
+        };
+        public IEnumerable<Employee> Get([FromUri]Filter filter) 
+        {
+            return list.Where(e => e.Department == filter.Department && e.LastName.ToUpper() == filter.LastName.ToUpper()); 
+        }
+        //public IEnumerable<Employee> Get()
+        //{
+        //    return list;
+        //}
+
+        public Employee GetEmployee(int id)
+        {
+           var employee = list.FirstOrDefault(e => e.Id == id);
+            if (employee == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return employee;
+        }
+
+        public void Post (Employee employee)
+        {
+            var maxId = list.Max(e => e.Id);
+            employee.Id = maxId + 1;
+        }
+        public void Put (int id, Employee employee)
+        {
+            int index = list.ToList().FindIndex(e => e.Id == id);
+            list[index] = employee;
+        }
+        public void Delete (int id)
+        {
+            Employee employee = GetEmployee(id);
+            list.Remove(employee);
+        }
+        //public IEnumerable<Employee> GetByDepartment(int department)
+        //{
+        //    int[] validDepartments = { 1, 2, 3, 5, 8, 13 };
+        //    if (!validDepartments.Any(d => d == department))
+        //    {
+        //        var response = new HttpResponseMessage()
+        //        {
+        //            StatusCode = (HttpStatusCode)442,
+        //            ReasonPhrase = "Invalid Department"
+        //        };
+        //        throw new HttpResponseException(response);
+        //    }
+        //    return list.Where(e => e.Department == department);
+        //}
+    }
+}

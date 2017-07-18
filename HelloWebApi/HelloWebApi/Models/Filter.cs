@@ -5,12 +5,9 @@ using System.Web;
 
 namespace HelloWebApi.Models
 {
-    public class Employee
+    public class Filter
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
         public string LastName { get; set; }
-
         public int Department { get; set; }
     }
 }
