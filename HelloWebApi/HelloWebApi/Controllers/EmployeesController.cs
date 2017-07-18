@@ -44,10 +44,15 @@ namespace HelloWebApi.Controllers.Api
             return employee;
         }
 
-        public void Post (Employee employee)
+        public HttpResponseMessage Post (Employee employee)
         {
             var maxId = list.Max(e => e.Id);
             employee.Id = maxId + 1;
+            list.Add(employee);
+            var response = Request.CreateResponse<Employee>(HttpStatusCode.Created, employee);
+            string uri = Url.Link("DefaultApi", new { id = employee.Id });
+            response.Headers.Location = new Uri(uri);
+            return response;
         }
         public void Put (int id, Employee employee)
         {
