@@ -6,6 +6,7 @@ using HelloWebApi.Models;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.OData;
+using System.Web.Http.Tracing;
 
 
 namespace HelloWebApi.Controllers.Api
@@ -26,21 +27,55 @@ namespace HelloWebApi.Controllers.Api
                 Id = 12347, FirstName = "Joseph", LastName = "Law", Department = 2
             }
         };
+        private readonly ITraceWriter traceWriter = null;
+        public EmployeesController()
+        {
+            this.traceWriter = GlobalConfiguration.Configuration.Services.GetTraceWriter();
+        }
         //public IEnumerable<Employee> Get([FromUri]Filter filter) 
         //{
         //    return list.Where(e => e.Department == filter.Department && e.LastName.ToUpper() == filter.LastName.ToUpper()); 
         //}
         public IEnumerable<Employee> Get()
         {
-            return list;
+            IEnumerable<Employee> employees = null;
+            if (traceWriter != null)
+            {
+                traceWriter.TraceBeginEnd(Request, TraceCategories.FormattingCategory, System.Web.Http.Tracing.TraceLevel.Info, "EmployeesController", "Get",
+                    beginTrace: (tr) =>
+                        {
+                            tr.Message = "Entering Get";
+                        },
+                    execute: () =>
+                        {
+                            System.Threading.Thread.Sleep(1000);
+                            employees = list;
+                        },
+                    endTrace: (tr) =>
+                            {
+                                tr.Message = "Leaving Get";
+                            },
+                    errorTrace: null);
+            }
+            return employees;
         }
 
-        public Employee GetEmployee(int id)
+        public Employee Get(int id)
         {
            var employee = list.FirstOrDefault(e => e.Id == id);
             if (employee == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            if (traceWriter != null)
+            {
+                traceWriter.Info(Request, "EmployeesController", String.Format("Getting employee {0}", id));
+                traceWriter.Trace(Request, "System.Web.Http.Controllers", System.Web.Http.Tracing.TraceLevel.Info, (traceRecord) =>
+                    {
+                        traceRecord.Message = String.Format("Getting employee {0}", id);
+                        traceRecord.Operation = "Get(int)";
+                        traceRecord.Operator = "EmployeeController";
+                    });
             }
             return employee;
         }
@@ -107,7 +142,7 @@ namespace HelloWebApi.Controllers.Api
         }
         public void Delete (int id)
         {
-            Employee employee = GetEmployee(id);
+            Employee employee = Get(id);
             list.Remove(employee);
         }
         //public IEnumerable<Employee> GetByDepartment(int department)
