@@ -79,7 +79,6 @@ C:\Users\quwoo\Documents\Visual Studio 2013\Projects\PracticalAspDotNetWebApiBoo
 C:\Users\quwoo\Documents\Visual Studio 2013\Projects\PracticalAspDotNetWebApiBook\HelloWebApi\HelloWebApi\bin\Microsoft.Data.Edm.dll
 C:\Users\quwoo\Documents\Visual Studio 2013\Projects\PracticalAspDotNetWebApiBook\HelloWebApi\HelloWebApi\bin\Microsoft.Data.OData.dll
 C:\Users\quwoo\Documents\Visual Studio 2013\Projects\PracticalAspDotNetWebApiBook\HelloWebApi\HelloWebApi\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\quwoo\Documents\Visual Studio 2013\Projects\PracticalAspDotNetWebApiBook\HelloWebApi\HelloWebApi\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Users\quwoo\Documents\Visual Studio 2013\Projects\PracticalAspDotNetWebApiBook\HelloWebApi\HelloWebApi\bin\Newtonsoft.Json.dll
 C:\Users\quwoo\Documents\Visual Studio 2013\Projects\PracticalAspDotNetWebApiBook\HelloWebApi\HelloWebApi\bin\System.Net.Http.Formatting.dll
 C:\Users\quwoo\Documents\Visual Studio 2013\Projects\PracticalAspDotNetWebApiBook\HelloWebApi\HelloWebApi\bin\System.Spatial.dll
