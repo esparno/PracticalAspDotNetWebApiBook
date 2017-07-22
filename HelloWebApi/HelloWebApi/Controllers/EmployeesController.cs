@@ -60,7 +60,7 @@ namespace HelloWebApi.Controllers.Api
             return employees;
         }
 
-        public Employee Get(int id)
+        public HttpResponseMessage Get(int id)
         {
            var employee = list.FirstOrDefault(e => e.Id == id);
             if (employee == null)
@@ -77,7 +77,14 @@ namespace HelloWebApi.Controllers.Api
                         traceRecord.Operator = "EmployeeController";
                     });
             }
-            return employee;
+            var blackListed = "application/xml";
+            var allowedFormatters = Configuration.Formatters.Where(f => !f.SupportedMediaTypes.Any(m => m.MediaType.Equals(blackListed, StringComparison.OrdinalIgnoreCase)));
+            var result = Configuration.Services.GetContentNegotiator().Negotiate(typeof(Employee), Request, allowedFormatters);
+
+            return new HttpResponseMessage()
+            {
+                Content = new ObjectContent<Employee>(employee, result.Formatter, result.MediaType)
+            };
         }
 
         public HttpResponseMessage Post (Employee employee)
@@ -140,11 +147,11 @@ namespace HelloWebApi.Controllers.Api
             deltaEmployee.Patch(employee);
             return Request.CreateResponse(HttpStatusCode.NoContent);
         }
-        public void Delete (int id)
-        {
-            Employee employee = Get(id);
-            list.Remove(employee);
-        }
+        //public void Delete (int id)
+        //{
+        //    Employee employee = Get(id);
+        //    list.Remove(employee);
+        //}
         //public IEnumerable<Employee> GetByDepartment(int department)
         //{
         //    int[] validDepartments = { 1, 2, 3, 5, 8, 13 };
