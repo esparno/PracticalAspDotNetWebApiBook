@@ -188,6 +188,7 @@
     <Compile Include="Models\Filter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RingBufferLog.cs" />
+    <Compile Include="TracingHandler.cs" />
     <Compile Include="WebApiTracer.cs" />
   </ItemGroup>
   <ItemGroup>
