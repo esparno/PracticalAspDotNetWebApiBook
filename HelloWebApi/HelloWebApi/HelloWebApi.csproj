@@ -54,6 +54,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -184,6 +185,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IPBasedMediaTypeMapping.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Filter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
