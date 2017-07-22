@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Tracing;
+using System.Diagnostics;
+using HelloWebApi.Models;
 
 namespace HelloWebApi
 {
@@ -16,10 +18,20 @@ namespace HelloWebApi
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            config.EnableSystemDiagnosticsTracing();
-            config.Services.Replace(typeof(ITraceWriter), new WebApiTracer());
-            config.MessageHandlers.Add(new TracingHandler());
+            //config.EnableSystemDiagnosticsTracing();
+            //config.Services.Replace(typeof(ITraceWriter), new WebApiTracer());
+            //config.MessageHandlers.Add(new TracingHandler());
             //config.Services.Replace(typeof(System.Web.Http.Tracing.ITraceWriter), new EntryExitTracer());
+
+            foreach (var formatter in config.Formatters)
+            {
+                Trace.WriteLine(formatter.GetType().Name);
+                Trace.WriteLine("\tCanReadType: " + formatter.CanReadType(typeof(Employee)));
+                Trace.WriteLine("\tCanWriteType:" + formatter.CanWriteType(typeof(Employee)));
+                Trace.WriteLine("\tBase: " + formatter.GetType().BaseType.Name);
+                Trace.WriteLine("\tMedia Types: " + String.Join(", ", formatter.SupportedMediaTypes));
+            }
+
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.
             // For more information, visit http://go.microsoft.com/fwlink/?LinkId=279712.
