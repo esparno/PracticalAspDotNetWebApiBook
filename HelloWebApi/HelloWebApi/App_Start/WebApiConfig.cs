@@ -5,6 +5,8 @@ using System.Web.Http;
 using System.Web.Http.Tracing;
 using System.Diagnostics;
 using HelloWebApi.Models;
+using System.Net.Http.Headers;
+using System.Net.Http.Formatting;
 
 namespace HelloWebApi
 {
@@ -22,7 +24,10 @@ namespace HelloWebApi
             //config.Services.Replace(typeof(ITraceWriter), new WebApiTracer());
             //config.MessageHandlers.Add(new TracingHandler());
             //config.Services.Replace(typeof(System.Web.Http.Tracing.ITraceWriter), new EntryExitTracer());
-
+            //config.Formatters.RemoveAt(0);
+            //config.Formatters.RemoveAt(0);
+            config.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("frmt", "json", new MediaTypeHeaderValue("application/json")));
+            config.Formatters.XmlFormatter.MediaTypeMappings.Add(new QueryStringMapping("frmt", "xml", new MediaTypeHeaderValue("application/xml")));
             foreach (var formatter in config.Formatters)
             {
                 Trace.WriteLine(formatter.GetType().Name);
