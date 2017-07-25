@@ -57,6 +57,7 @@ namespace HelloWebApi.Controllers.Api
                             },
                     errorTrace: null);
             }
+            employees = list;
             return employees;
         }
 

@@ -19,7 +19,7 @@ namespace HelloWebApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
+            config.Formatters.Add(new FixedWidthTextMediaFormatter());
             //config.EnableSystemDiagnosticsTracing();
             //config.Services.Replace(typeof(ITraceWriter), new WebApiTracer());
             //config.MessageHandlers.Add(new TracingHandler());
