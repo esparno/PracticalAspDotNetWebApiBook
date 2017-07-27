@@ -11,11 +11,23 @@ namespace TestConsoleApp
     {
         static void Main(string[] args)
         {
-            string uri = "http://localhost.fiddler:49741/api/employees";
-            using (WebClient client = new WebClient())
+            string uri = "http://localhost:49741/api/employees/12345";
+            using (AutoDecompressionWebClient client = new AutoDecompressionWebClient())
             {
-                client.DownloadString(uri);
+                client.Headers.Add("Accept-Encoding", "gzip, deflate;q=0.8");
+                Console.WriteLine(client.DownloadString(uri));
+                Console.ReadLine();
             }
+        }
+    }
+
+    class AutoDecompressionWebClient : WebClient
+    {
+        protected override WebRequest GetWebRequest(Uri address)
+        {
+            HttpWebRequest request = base.GetWebRequest(address) as HttpWebRequest;
+            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+            return request;
         }
     }
 }
