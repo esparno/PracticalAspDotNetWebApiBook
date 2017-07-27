@@ -145,7 +145,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Messages.fr-fr.designer.cs">
+      <DependentUpon>Messages.fr-fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="CultureHandler.cs" />
     <Compile Include="EncodedContent.cs" />
     <Compile Include="EncodingHandler.cs" />
     <Compile Include="EncodingSchema.cs" />
@@ -327,6 +338,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Messages.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Messages.fr-fr.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Messages.fr-fr.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

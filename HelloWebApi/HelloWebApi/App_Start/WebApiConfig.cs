@@ -20,7 +20,7 @@ namespace HelloWebApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-            config.Formatters.Add(new FixedWidthTextMediaFormatter());
+            //config.Formatters.Add(new FixedWidthTextMediaFormatter());
             //config.EnableSystemDiagnosticsTracing();
             //config.Services.Replace(typeof(ITraceWriter), new WebApiTracer());
             //config.MessageHandlers.Add(new TracingHandler());
@@ -31,14 +31,14 @@ namespace HelloWebApi
             //config.Formatters.XmlFormatter.MediaTypeMappings.Add(new QueryStringMapping("frmt", "xml", new MediaTypeHeaderValue("application/xml")));
             //config.Formatters.JsonFormatter.MediaTypeMappings.Add(new RequestHeaderMapping("X-Media", "json", StringComparison.OrdinalIgnoreCase, false, new MediaTypeHeaderValue("application/json")));
 
-            config.Formatters.JsonFormatter.SupportedEncodings.Add(Encoding.GetEncoding(932));
-            foreach (var encoding in config.Formatters.JsonFormatter.SupportedEncodings)
-            {
-                System.Diagnostics.Trace.WriteLine(encoding);
-            }
-            config.MessageHandlers.Add(new EncodingHandler());
-            
-            
+            //config.Formatters.JsonFormatter.SupportedEncodings.Add(Encoding.GetEncoding(932));
+            //foreach (var encoding in config.Formatters.JsonFormatter.SupportedEncodings)
+            //{
+            //    System.Diagnostics.Trace.WriteLine(encoding);
+            //}
+            //config.MessageHandlers.Add(new EncodingHandler());
+
+            config.MessageHandlers.Add(new CultureHandler());
             
             //config.Formatters.JsonFormatter.MediaTypeMappings.Add(new IPBasedMediaTypeMapping());
             //foreach (var formatter in config.Formatters)

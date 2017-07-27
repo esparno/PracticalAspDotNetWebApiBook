@@ -66,7 +66,8 @@ namespace HelloWebApi.Controllers.Api
            var employee = list.FirstOrDefault(e => e.Id == id);
             if (employee == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                var response = Request.CreateResponse(HttpStatusCode.NotFound, new HttpError(Resources.Messages.NotFound));
+                return response;
             }
             if (traceWriter != null)
             {
