@@ -146,6 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="EncodedContent.cs" />
+    <Compile Include="EncodingHandler.cs" />
+    <Compile Include="EncodingSchema.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using HelloWebApi.Models;
 using System.Net.Http.Headers;
 using System.Net.Http.Formatting;
+using System.Text;
 
 namespace HelloWebApi
 {
@@ -29,7 +30,13 @@ namespace HelloWebApi
             //config.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("frmt", "json", new MediaTypeHeaderValue("application/json")));
             //config.Formatters.XmlFormatter.MediaTypeMappings.Add(new QueryStringMapping("frmt", "xml", new MediaTypeHeaderValue("application/xml")));
             //config.Formatters.JsonFormatter.MediaTypeMappings.Add(new RequestHeaderMapping("X-Media", "json", StringComparison.OrdinalIgnoreCase, false, new MediaTypeHeaderValue("application/json")));
-            
+
+            config.Formatters.JsonFormatter.SupportedEncodings.Add(Encoding.GetEncoding(932));
+            foreach (var encoding in config.Formatters.JsonFormatter.SupportedEncodings)
+            {
+                System.Diagnostics.Trace.WriteLine(encoding);
+            }
+            config.MessageHandlers.Add(new EncodingHandler());
             
             
             
