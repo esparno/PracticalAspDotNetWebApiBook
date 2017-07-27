@@ -10,6 +10,7 @@ namespace HelloWebApi.Models
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public decimal Compensation { get; set; }
 
         public int Department { get; set; }
     }

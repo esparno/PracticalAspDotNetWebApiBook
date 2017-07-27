@@ -24,6 +24,7 @@ namespace HelloWebApi
                 if(headerValue != null)
                 {
                     Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(headerValue.Value);
+                    Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
                 }
 
                 if(list.Any(e => e.Value == "*" && (!e.Quality.HasValue || e.Quality.Value > 0.0D)))
@@ -33,6 +34,7 @@ namespace HelloWebApi
                     if(culture != null)
                     {
                         Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
+                        Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
                     }
                 }
             }

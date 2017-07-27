@@ -38,6 +38,7 @@ namespace HelloWebApi
             //}
             //config.MessageHandlers.Add(new EncodingHandler());
 
+            config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new NumberConverter());
             config.MessageHandlers.Add(new CultureHandler());
             
             //config.Formatters.JsonFormatter.MediaTypeMappings.Add(new IPBasedMediaTypeMapping());

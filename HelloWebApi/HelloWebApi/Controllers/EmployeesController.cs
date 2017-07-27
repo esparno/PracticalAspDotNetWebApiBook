@@ -16,15 +16,15 @@ namespace HelloWebApi.Controllers.Api
         private IList<Employee> list = new List<Employee>() {
             new Employee()
             {
-                Id = 12345, FirstName = "John", LastName = "Smith", Department=2
+                Id = 12345, FirstName = "John", LastName = "Smith", Department=2, Compensation = 45678.12M
             },
             new Employee()
             {
-                Id = 12346, FirstName = "Jane", LastName = "Doe", Department = 3
+                Id = 12346, FirstName = "Jane", LastName = "Doe", Department = 3, Compensation = 40000.12M
             },
             new Employee()
             {
-                Id = 12347, FirstName = "Joseph", LastName = "Law", Department = 2
+                Id = 12347, FirstName = "Joseph", LastName = "Law", Department = 2, Compensation = 34573.12M
             }
         };
         private readonly ITraceWriter traceWriter = null;
