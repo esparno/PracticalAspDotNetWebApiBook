@@ -79,7 +79,7 @@ namespace HelloWebApi.Controllers.Api
                         traceRecord.Operator = "EmployeeController";
                     });
             }
-            var blackListed = "application/xml";
+            var blackListed = "";
             var allowedFormatters = Configuration.Formatters.Where(f => !f.SupportedMediaTypes.Any(m => m.MediaType.Equals(blackListed, StringComparison.OrdinalIgnoreCase)));
             var result = Configuration.Services.GetContentNegotiator().Negotiate(typeof(Employee), Request, allowedFormatters);
 
