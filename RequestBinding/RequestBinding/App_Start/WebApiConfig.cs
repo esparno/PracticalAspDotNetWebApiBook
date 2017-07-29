@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Net.Http.Formatting;
+using System.Diagnostics;
+using RequestBinding.Models;
 
 namespace RequestBinding
 {
@@ -14,6 +17,18 @@ namespace RequestBinding
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.EnableSystemDiagnosticsTracing();
+            foreach (var formatter in config.Formatters.Where(f => f.SupportedMediaTypes.Any(m => m.MediaType.Equals("application/x-www-form-urlencoded"))))
+            {
+                Trace.WriteLine(formatter.GetType().Name);
+                Trace.WriteLine("\tCanReadType Employee: " + formatter.CanReadType(typeof(Employee)));
+                Trace.WriteLine("\tCanWriteType Employee: " + formatter.CanWriteType(typeof(Employee)));
+                Trace.WriteLine("\tCanReadType FormDataCollection: " + formatter.CanReadType(typeof(FormDataCollection)));
+                Trace.WriteLine("\tCanWriteType FormDataCollection: " + formatter.CanWriteType(typeof(FormDataCollection)));
+                Trace.WriteLine("\tBase: " + formatter.GetType().BaseType.Name);
+                Trace.WriteLine("\tMedia Types: " + string.Join(", ", formatter.SupportedMediaTypes));
+            }
+
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.

@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Diagnostics;
 using RequestBinding.Models;
+using System.Net.Http.Formatting;
 
 namespace RequestBinding.Controllers
 {
@@ -30,12 +31,19 @@ namespace RequestBinding.Controllers
         //}
 
         // Binding an Http Request to Simple Types
-        public void Post(int id, string firstName, [FromBody]int locationid, Guid guid)
+        //public void Post(int id, string firstName, [FromBody]int locationid, Guid guid)
+        //{
+        //    Trace.WriteLine(id);
+        //    Trace.WriteLine(firstName);
+        //    Trace.WriteLine(locationid);
+        //    Trace.WriteLine(guid);
+        //}
+
+
+        public void Post(FormDataCollection data)
         {
-            Trace.WriteLine(id);
-            Trace.WriteLine(firstName);
-            Trace.WriteLine(locationid);
-            Trace.WriteLine(guid);
+            Trace.WriteLine(data.Get("firstname"));
+            Trace.WriteLine(data.Get("lastname"));
         }
     }
 }
