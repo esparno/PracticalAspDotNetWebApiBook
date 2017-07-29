@@ -39,11 +39,17 @@ namespace RequestBinding.Controllers
         //    Trace.WriteLine(guid);
         //}
 
+        // bind form data
+        //public void Post(FormDataCollection data)
+        //{
+        //    Trace.WriteLine(data.Get("firstname"));
+        //    Trace.WriteLine(data.Get("lastname"));
+        //}
 
-        public void Post(FormDataCollection data)
+        // bind form data to custom class
+        public int Post(Employee employee)
         {
-            Trace.WriteLine(data.Get("firstname"));
-            Trace.WriteLine(data.Get("lastname"));
+            return new Random().Next();
         }
     }
 }
