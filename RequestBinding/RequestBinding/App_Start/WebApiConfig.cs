@@ -20,6 +20,7 @@ namespace RequestBinding
             config.EnableSystemDiagnosticsTracing();
             //config.Formatters.JsonFormatter.SerializerSettings.Culture = new System.Globalization.CultureInfo("en-GB");
 
+            config.Services.Add(typeof(System.Web.Http.ValueProviders.ValueProviderFactory), new HeaderValueProviderFactory());
             config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new DateTimeConverter());
             config.MessageHandlers.Add(new CultureHandler());
 

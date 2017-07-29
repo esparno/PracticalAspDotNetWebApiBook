@@ -52,11 +52,20 @@ namespace RequestBinding.Controllers
             return new Random().Next();
         }
 
-        public HttpResponseMessage Get(Shift shift)
+        //public HttpResponseMessage Get(Shift shift)
+        //{
+        //    var response = new HttpResponseMessage(HttpStatusCode.OK)
+        //    {
+        //        Content = new StringContent(shift.Date.ToShortDateString())
+        //    };
+        //    return response;
+        //}
+
+        public HttpResponseMessage Get([System.Web.Http.ModelBinding.ModelBinder]IEnumerable<string> ifmatch)
         {
             var response = new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new StringContent(shift.Date.ToShortDateString())
+                Content = new StringContent(String.Join(" ", ifmatch))
             };
             return response;
         }
