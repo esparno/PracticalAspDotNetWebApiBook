@@ -51,5 +51,14 @@ namespace RequestBinding.Controllers
         {
             return new Random().Next();
         }
+
+        public HttpResponseMessage Get(Shift shift)
+        {
+            var response = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent(shift.Date.ToShortDateString())
+            };
+            return response;
+        }
     }
 }
