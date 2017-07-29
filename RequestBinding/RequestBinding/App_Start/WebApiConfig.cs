@@ -18,6 +18,11 @@ namespace RequestBinding
                 defaults: new { id = RouteParameter.Optional }
             );
             config.EnableSystemDiagnosticsTracing();
+            //config.Formatters.JsonFormatter.SerializerSettings.Culture = new System.Globalization.CultureInfo("en-GB");
+
+            config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new DateTimeConverter());
+            config.MessageHandlers.Add(new CultureHandler());
+
             foreach (var formatter in config.Formatters.Where(f => f.SupportedMediaTypes.Any(m => m.MediaType.Equals("application/x-www-form-urlencoded"))))
             {
                 Trace.WriteLine(formatter.GetType().Name);
