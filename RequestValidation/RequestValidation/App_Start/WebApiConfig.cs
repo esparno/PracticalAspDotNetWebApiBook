@@ -18,7 +18,11 @@ namespace RequestValidation
             );
 
             config.Services.RemoveAll(typeof(ModelValidatorProvider), v => v is InvalidModelValidatorProvider);
-           
+
+            config.Filters.Add(new ValidationErrorHandlerFilterAttribute());
+
+            config.MessageHandlers.Add(new CultureHandler());
+
             config.EnableSystemDiagnosticsTracing();
         }
     }
