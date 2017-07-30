@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Diagnostics;
 using RequestBinding.Models;
 using System.Net.Http.Formatting;
+using System.Web.Http.ModelBinding;
 
 namespace RequestBinding.Controllers
 {
@@ -61,11 +62,21 @@ namespace RequestBinding.Controllers
         //    return response;
         //}
 
-        public HttpResponseMessage Get([System.Web.Http.ModelBinding.ModelBinder]IEnumerable<string> ifmatch)
+        //value binding
+        //public HttpResponseMessage Get([System.Web.Http.ModelBinding.ModelBinder]IEnumerable<string> ifmatch)
+        //{
+        //    var response = new HttpResponseMessage(HttpStatusCode.OK)
+        //    {
+        //        Content = new StringContent(String.Join(" ", ifmatch))
+        //    };
+        //    return response;
+        //}
+
+        public HttpResponseMessage Get([ModelBinder(typeof(TalentScoutModelBinderProvider))] TalentScout scout)
         {
             var response = new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new StringContent(String.Join(" ", ifmatch))
+                Content = new StringContent("")
             };
             return response;
         }
