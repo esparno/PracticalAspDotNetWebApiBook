@@ -80,5 +80,10 @@ namespace RequestBinding.Controllers
             };
             return response;
         }
+
+        public void Put(int id, Employee employee)
+        {
+            
+        }
     }
 }

@@ -24,6 +24,14 @@ namespace RequestBinding
             config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new DateTimeConverter());
             config.MessageHandlers.Add(new CultureHandler());
 
+            var rules = config.ParameterBindingRules;
+            rules.Insert(0, p =>
+                {
+                    if (p.ParameterType == typeof(Employee))
+                        return new AllRequestParameterBinding(p);
+                    return null;
+                });
+
             foreach (var formatter in config.Formatters.Where(f => f.SupportedMediaTypes.Any(m => m.MediaType.Equals("application/x-www-form-urlencoded"))))
             {
                 Trace.WriteLine(formatter.GetType().Name);

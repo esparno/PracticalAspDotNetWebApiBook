@@ -12,5 +12,7 @@ namespace RequestBinding.Models
         public string LastName { get; set; }
 
         public DateTime Doj { get; set; }
+
+        public string Xaffiliation { get; set; }
     }
 }
