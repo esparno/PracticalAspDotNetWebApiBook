@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Resources;
+using System.Collections.Generic;
 
 namespace RequestValidation.Models
 {
@@ -14,7 +15,7 @@ namespace RequestValidation.Models
         [MaxLength(20, ErrorMessageResourceName= "InvalidLastNameLength", ErrorMessageResourceType=typeof(Messages))]
         public string LastName { get; set; }
 
-        [Required]
-        public int Department { get; set; }
+        [MemberRange(0,9)]
+        public List<int> Department { get; set; }
     }
 }
