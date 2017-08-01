@@ -8,6 +8,9 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using TalentManager.Data;
 using System.Data.Entity;
+using TalentManager.Web.Models;
+using AutoMapper;
+using TalentManager.Domain;
 
 namespace TalentManager.Web
 {
@@ -26,6 +29,13 @@ namespace TalentManager.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Database.SetInitializer<Context>(null);
+
+            Mapper.Initialize(c => 
+                {
+                    c.CreateMap<EmployeeDto, Employee>();
+                    c.CreateMap<Employee, EmployeeDto>();
+                }
+                );
         }
     }
 }

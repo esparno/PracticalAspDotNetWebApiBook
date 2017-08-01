@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Net.Http;
 using TalentManager.Data;
 using TalentManager.Domain;
+using AutoMapper;
+using TalentManager.Web.Models;
 
 namespace TalentManager.Web.Controllers
 {
@@ -13,17 +15,20 @@ namespace TalentManager.Web.Controllers
     {
         private readonly IUnitOfWork uow = null;
         private readonly IRepository<Employee> repository = null;
+        //private readonly IMappingEngine mapper = null;
 
         public EmployeesController()
         {
             uow = new UnitOfWork();
             repository = new Repository<Employee>(uow);
+            //mapper = Mapper.Engine;
         }
 
         public EmployeesController(IUnitOfWork uow, IRepository<Employee> repository)
         {
             this.uow = uow;
             this.repository = repository;
+            //this.mapper = mapper;
         }
 
         protected override void Dispose(bool disposing)
@@ -47,7 +52,7 @@ namespace TalentManager.Web.Controllers
                 var response = Request.CreateResponse(HttpStatusCode.NotFound, "Employee not found");
                 throw new HttpResponseException(response);
             }
-            return Request.CreateResponse<Employee>(HttpStatusCode.OK, employee);
+            return Request.CreateResponse<EmployeeDto>(HttpStatusCode.OK, Mapper.Map<Employee, EmployeeDto>(employee));
         }
         public HttpResponseMessage GetByDepartment(int departmentId)
         {
@@ -59,12 +64,13 @@ namespace TalentManager.Web.Controllers
             throw new HttpResponseException(HttpStatusCode.NotFound);
         }
 
-        public HttpResponseMessage Post(Employee employee)
+        public HttpResponseMessage Post(EmployeeDto employeeDto)
         {
+            var employee = Mapper.Map<EmployeeDto, Employee>(employeeDto);
             repository.Insert(employee);
             uow.Save();
-            var response = Request.CreateResponse<Employee>(HttpStatusCode.Created, employee);
-            string uri = Url.Link("DefaultApi", new { id = employee.Id });
+            var response = Request.CreateResponse<EmployeeDto>(HttpStatusCode.Created, employeeDto);
+            string uri = Url.Link("DefaultApi", new { id = employeeDto.Id });
             response.Headers.Location = new Uri(uri);
             return response;
         }
