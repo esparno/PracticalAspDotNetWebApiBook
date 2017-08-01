@@ -11,49 +11,120 @@ namespace TalentManager.Web.Controllers
 {
     public class EmployeesController : ApiController
     {
-        private readonly IEmployeeRepository repository = null;
+        private readonly IUnitOfWork uow = null;
+        private readonly IRepository<Employee> repository = null;
 
         public EmployeesController()
         {
-            this.repository = new EmployeeRepository();
+            uow = new UnitOfWork();
+            repository = new Repository<Employee>(uow);
         }
 
-        public EmployeesController(IEmployeeRepository repository)
+        public EmployeesController(IUnitOfWork uow, IRepository<Employee> repository)
         {
+            this.uow = uow;
             this.repository = repository;
-        }
-
-        public HttpResponseMessage Get(int id)
-        {
-            var employee = repository.Get(id);
-            if (employee == null)
-            {
-                var response = Request.CreateResponse(HttpStatusCode.NotFound, "Employee not found");
-
-                throw new HttpResponseException(response);
-            }
-
-            return Request.CreateResponse<Employee>(HttpStatusCode.OK, employee);
-        }
-
-        public HttpResponseMessage GetByDepartment(int departmentId)
-        {
-            var employees = repository.GetByDepartment(departmentId);
-            if (employees != null && employees.Any())
-            {
-                return Request.CreateResponse<IEnumerable<Employee>>(HttpStatusCode.OK, employees);
-            }
-
-            throw new HttpResponseException(HttpStatusCode.NotFound);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (repository != null)
+            if(repository != null)
+            {
                 repository.Dispose();
-
+            }
+            if(uow != null)
+            {
+                uow.Dispose();
+            }
             base.Dispose(disposing);
         }
+
+        public HttpResponseMessage Get(int id)
+        {
+            var employee = repository.Find(id);
+            if(employee == null)
+            {
+                var response = Request.CreateResponse(HttpStatusCode.NotFound, "Employee not found");
+                throw new HttpResponseException(response);
+            }
+            return Request.CreateResponse<Employee>(HttpStatusCode.OK, employee);
+        }
+        public HttpResponseMessage GetByDepartment(int departmentId)
+        {
+            var employees = repository.All.Where(e => e.DepartmentId == departmentId);
+            if(employees != null && employees.Any())
+            {
+                return Request.CreateResponse<IEnumerable<Employee>>(HttpStatusCode.OK, employees);
+            }
+            throw new HttpResponseException(HttpStatusCode.NotFound);
+        }
+
+        public HttpResponseMessage Post(Employee employee)
+        {
+            repository.Insert(employee);
+            uow.Save();
+            var response = Request.CreateResponse<Employee>(HttpStatusCode.Created, employee);
+            string uri = Url.Link("DefaultApi", new { id = employee.Id });
+            response.Headers.Location = new Uri(uri);
+            return response;
+        }
+        public void Put(int id, Employee employee)
+        {
+            repository.Update(employee);
+            uow.Save();
+        }
+        public void Delete(int id)
+        {
+            repository.Delete(id);
+            uow.Save();
+        }
+
+
+
+
+        //private readonly IEmployeeRepository repository = null;
+
+        //public EmployeesController()
+        //{
+        //    this.repository = new EmployeeRepository();
+        //}
+
+        //public EmployeesController(IEmployeeRepository repository)
+        //{
+        //    this.repository = repository;
+        //}
+
+        //public HttpResponseMessage Get(int id)
+        //{
+        //    var employee = repository.Get(id);
+        //    if (employee == null)
+        //    {
+        //        var response = Request.CreateResponse(HttpStatusCode.NotFound, "Employee not found");
+
+        //        throw new HttpResponseException(response);
+        //    }
+
+        //    return Request.CreateResponse<Employee>(HttpStatusCode.OK, employee);
+        //}
+
+        //public HttpResponseMessage GetByDepartment(int departmentId)
+        //{
+        //    var employees = repository.GetByDepartment(departmentId);
+        //    if (employees != null && employees.Any())
+        //    {
+        //        return Request.CreateResponse<IEnumerable<Employee>>(HttpStatusCode.OK, employees);
+        //    }
+
+        //    throw new HttpResponseException(HttpStatusCode.NotFound);
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (repository != null)
+        //        repository.Dispose();
+
+        //    base.Dispose(disposing);
+        //}
 
 
 
