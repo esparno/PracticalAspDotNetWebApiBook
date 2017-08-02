@@ -42,6 +42,7 @@ namespace TalentManager.Web.Controllers
             base.Dispose(disposing);
         }
 
+        [OptimisticLock]
         public HttpResponseMessage Get(int id)
         {
             var employee = repository.Find(id);
@@ -72,9 +73,12 @@ namespace TalentManager.Web.Controllers
             response.Headers.Location = new Uri(uri);
             return response;
         }
+
+        [OptimisticLock]
         [ConflictExceptionHandler]
-        public void Put(int id, Employee employee)
+        public void Put(int id, EmployeeDto employeeDto)
         {
+            var employee = Mapper.Map<EmployeeDto, Employee>(employeeDto);
             repository.Update(employee);
             uow.Save();
         }
