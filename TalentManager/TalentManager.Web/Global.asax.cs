@@ -11,6 +11,7 @@ using System.Data.Entity;
 using TalentManager.Web.Models;
 using AutoMapper;
 using TalentManager.Domain;
+using TalentManager.Web.App_Start;
 
 namespace TalentManager.Web
 {
@@ -29,7 +30,7 @@ namespace TalentManager.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Database.SetInitializer<Context>(null);
-
+            IocConfig.RegisterDependencyResolver(GlobalConfiguration.Configuration);
             Mapper.Initialize(c => 
                 {
                     c.CreateMap<EmployeeDto, Employee>();

@@ -17,18 +17,16 @@ namespace TalentManager.Web.Controllers
         private readonly IRepository<Employee> repository = null;
         //private readonly IMappingEngine mapper = null;
 
-        public EmployeesController()
-        {
-            uow = new UnitOfWork();
-            repository = new Repository<Employee>(uow);
-            //mapper = Mapper.Engine;
-        }
+        //public EmployeesController()
+        //{
+        //    uow = new UnitOfWork();
+        //    repository = new Repository<Employee>(uow);
+        //}
 
         public EmployeesController(IUnitOfWork uow, IRepository<Employee> repository)
         {
             this.uow = uow;
             this.repository = repository;
-            //this.mapper = mapper;
         }
 
         protected override void Dispose(bool disposing)
