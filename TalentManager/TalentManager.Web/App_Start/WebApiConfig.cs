@@ -33,6 +33,9 @@ namespace TalentManager.Web
                 defaults: new { id = RouteParameter.Optional }
             );
 
+
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Never;
+
             //config.MessageHandlers.Add(new MyImportantHandler());
             //config.MessageHandlers.Add(new MyNotSoImportantHandler());
 

@@ -72,6 +72,7 @@ namespace TalentManager.Web.Controllers
             response.Headers.Location = new Uri(uri);
             return response;
         }
+        [ConflictExceptionHandler]
         public void Put(int id, Employee employee)
         {
             repository.Update(employee);
