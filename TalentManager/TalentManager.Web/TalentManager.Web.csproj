@@ -170,6 +170,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="ConflictExceptionHandlerAttribute.cs" />
+    <Compile Include="Controllers\EmployeesV2Controller.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -177,6 +178,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EmployeeDto.cs" />
+    <Compile Include="MyControllerSelector.cs" />
     <Compile Include="MyImportantHandler.cs" />
     <Compile Include="MyNotSoImportantHandler.cs" />
     <Compile Include="OptimisticLockAttribute.cs" />

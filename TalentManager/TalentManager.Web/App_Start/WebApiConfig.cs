@@ -33,7 +33,7 @@ namespace TalentManager.Web
                 defaults: new { id = RouteParameter.Optional }
             );
 
-
+            config.Services.Replace(typeof(IHttpControllerSelector), new MyControllerSelector(config));
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Never;
 
             //config.MessageHandlers.Add(new MyImportantHandler());
