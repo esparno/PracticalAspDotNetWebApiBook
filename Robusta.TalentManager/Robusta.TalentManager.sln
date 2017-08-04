@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robusta.TalentManager.Domain", "Robusta.TalentManager.Domain\Robusta.TalentManager.Domain.csproj", "{83448453-75FC-4F90-A79B-61370E3409B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robusta.TalentManager.Data", "Robusta.TalentManager.Data\Robusta.TalentManager.Data.csproj", "{F4FCFD28-0AF8-4757-8CE9-A5F629D417A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robusta.TalentManager.WebApi.Core", "Robusta.TalentManager.WebApi.Core\Robusta.TalentManager.WebApi.Core.csproj", "{5E161E74-3946-493D-AFA4-A52AC352330E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robusta.TalentManager.WebApi.Dto", "Robusta.TalentManager.WebApi.Dto\Robusta.TalentManager.WebApi.Dto.csproj", "{61BFEC20-D400-4D57-8243-C0D8F8C6DB96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robusta.TalentManager.WebApi.WebHost", "Robusta.TalentManager.WebApi.WebHost\Robusta.TalentManager.WebApi.WebHost.csproj", "{B09050ED-97F6-4AC5-BF8C-06490552F5C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83448453-75FC-4F90-A79B-61370E3409B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83448453-75FC-4F90-A79B-61370E3409B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83448453-75FC-4F90-A79B-61370E3409B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83448453-75FC-4F90-A79B-61370E3409B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4FCFD28-0AF8-4757-8CE9-A5F629D417A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4FCFD28-0AF8-4757-8CE9-A5F629D417A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4FCFD28-0AF8-4757-8CE9-A5F629D417A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4FCFD28-0AF8-4757-8CE9-A5F629D417A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E161E74-3946-493D-AFA4-A52AC352330E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E161E74-3946-493D-AFA4-A52AC352330E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E161E74-3946-493D-AFA4-A52AC352330E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E161E74-3946-493D-AFA4-A52AC352330E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61BFEC20-D400-4D57-8243-C0D8F8C6DB96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61BFEC20-D400-4D57-8243-C0D8F8C6DB96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61BFEC20-D400-4D57-8243-C0D8F8C6DB96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61BFEC20-D400-4D57-8243-C0D8F8C6DB96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B09050ED-97F6-4AC5-BF8C-06490552F5C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B09050ED-97F6-4AC5-BF8C-06490552F5C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B09050ED-97F6-4AC5-BF8C-06490552F5C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B09050ED-97F6-4AC5-BF8C-06490552F5C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
