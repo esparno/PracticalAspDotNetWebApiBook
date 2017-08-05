@@ -20,6 +20,7 @@ namespace Robusta.TalentManager.WebApi.Core.Controllers
             this.repository = repository;
         }
 
+        [Authorize]
         public HttpResponseMessage Get(int id)
         {
             var employee = repository.Find(id);
