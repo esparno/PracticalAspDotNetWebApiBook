@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robusta.TM.WebApi.SH", "Rob
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robusta.TalentManager.WebApi.Test", "Robusta.TalentManager.WebApi.Test\Robusta.TalentManager.WebApi.Test.csproj", "{53226F4D-6CDD-40BE-B99C-CC23DF7006C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robusta.TalentManager.ClientCA", "Robusta.TalentManager.ClientCA\Robusta.TalentManager.ClientCA.csproj", "{2C2851C6-751A-4115-83DD-EC42093284C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{53226F4D-6CDD-40BE-B99C-CC23DF7006C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53226F4D-6CDD-40BE-B99C-CC23DF7006C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53226F4D-6CDD-40BE-B99C-CC23DF7006C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C2851C6-751A-4115-83DD-EC42093284C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C2851C6-751A-4115-83DD-EC42093284C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C2851C6-751A-4115-83DD-EC42093284C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C2851C6-751A-4115-83DD-EC42093284C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

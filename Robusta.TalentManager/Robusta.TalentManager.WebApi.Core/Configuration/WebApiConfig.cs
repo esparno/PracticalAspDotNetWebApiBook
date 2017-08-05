@@ -16,9 +16,9 @@ namespace Robusta.TalentManager.WebApi.Core.Configuration
             );
             //config.MessageHandlers.Add(new AuthenticationHandler());
 
-            var repository = config.DependencyResolver.GetService(typeof(IRepository<User>)) as IRepository<User>;
+            //var repository = config.DependencyResolver.GetService(typeof(IRepository<User>)) as IRepository<User>;
 
-            config.MessageHandlers.Add(new AuthenticationHandler(repository));
+            //config.MessageHandlers.Add(new AuthenticationHandler(repository));
         }
     }
 }
