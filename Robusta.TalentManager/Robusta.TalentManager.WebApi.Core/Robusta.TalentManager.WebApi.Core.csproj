@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationHandler.cs" />
     <Compile Include="Configuration\DtoMapperConfig.cs" />
     <Compile Include="Configuration\IocConfig.cs" />
     <Compile Include="Configuration\WebApiConfig.cs" />

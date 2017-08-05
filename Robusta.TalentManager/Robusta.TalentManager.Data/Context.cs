@@ -18,7 +18,8 @@ namespace Robusta.TalentManager.Data
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             modelBuilder.Configurations
-                .Add(new EmployeeConfiguration());
+                .Add(new EmployeeConfiguration())
+                .Add(new UserConfiguration());
         }
     }
 }
